@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков\Functions">
+      <UniqueIdentifier>{aa18c1f0-f814-4c72-97b6-494c71f479a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Class Implementation">
+      <UniqueIdentifier>{b133e787-061a-4919-948a-d46a157f85e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Class Implementation\Huffman classes">
+      <UniqueIdentifier>{2411c488-5d53-4358-9c0e-f4cce2833d8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Headers Class">
+      <UniqueIdentifier>{c54e2bd8-d4f1-48cb-baaf-b08fa3997df8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Headers Class\Headers Huffman classes">
+      <UniqueIdentifier>{44696762-ace5-437a-8199-decf251a5087}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="HuffmanCode.cpp">
+      <Filter>Исходные файлы\Class Implementation\Huffman classes</Filter>
+    </ClCompile>
+    <ClCompile Include="HuffmanTree.cpp">
+      <Filter>Исходные файлы\Class Implementation\Huffman classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Logging.cpp">
+      <Filter>Исходные файлы\Class Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="Convert.cpp">
+      <Filter>Исходные файлы\Class Implementation</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ArchiveHeaders.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Archiver.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgramOptions.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Unarchiver.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="FileFunctions.h">
+      <Filter>Файлы заголовков\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="HuffmanCode.h">
+      <Filter>Файлы заголовков\Headers Class\Headers Huffman classes</Filter>
+    </ClInclude>
+    <ClInclude Include="HuffmanTree.h">
+      <Filter>Файлы заголовков\Headers Class\Headers Huffman classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Convert.h">
+      <Filter>Файлы заголовков\Headers Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Logging.h">
+      <Filter>Файлы заголовков\Headers Class</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
