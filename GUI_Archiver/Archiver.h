@@ -50,15 +50,15 @@ public:
 
 		vector<size_t>&& byteFrequency = getByteFrequencyFromFile(pathForFile);
 
-		auto&& huffmanTree = HuffmanTree::getHuffmanTree(byteFrequency);
+		auto&& huffmanTree = HuffmanTree::GetHuffmanTree(byteFrequency);
 		auto&& huffmanCode = HuffmanCode::getHuffmanCode(huffmanTree);
 
 		string&& fileName = getFullFileNameFromPath(pathForFile);
-		string&& huffmanTreeInText = HuffmanTree::convertHuffmanTreeToString(huffmanTree);
+		string&& huffmanTreeInText = HuffmanTree::ConvertHuffmanTreeToString(huffmanTree);
 		string&& binaryText = getBinaryTextFromFileWithHuffmanCode(huffmanCode, pathForFile);
 		string&& textFromFileModifiedWithHuffmanCode = Convert::binarySequenceToSetBytes(binaryText);
 
-		HuffmanTree::deleteHuffmanTree(huffmanTree);
+		HuffmanTree::DeleteHuffmanTree(huffmanTree);
 
 		writeTextWithTagToFile(fileName, Tag::FileName);
 		writeTextWithTagToFile(huffmanTreeInText, Tag::HuffmanTree);

@@ -138,7 +138,7 @@
     <ClCompile Include="Convert.cpp" />
     <ClCompile Include="HuffmanCode.cpp" />
     <ClCompile Include="HuffmanTree.cpp" />
-    <ClCompile Include="Logging.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -148,7 +148,7 @@
     <ClInclude Include="FileFunctions.h" />
     <ClInclude Include="HuffmanCode.h" />
     <ClInclude Include="HuffmanTree.h" />
-    <ClInclude Include="Logging.h" />
+    <ClInclude Include="Logger.h" />
     <ClInclude Include="ProgramOptions.h" />
     <ClInclude Include="Unarchiver.h" />
   </ItemGroup>

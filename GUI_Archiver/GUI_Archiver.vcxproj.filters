@@ -39,7 +39,7 @@
     <ClCompile Include="HuffmanTree.cpp">
       <Filter>Исходные файлы\Class Implementation\Huffman classes</Filter>
     </ClCompile>
-    <ClCompile Include="Logging.cpp">
+    <ClCompile Include="Logger.cpp">
       <Filter>Исходные файлы\Class Implementation</Filter>
     </ClCompile>
     <ClCompile Include="Convert.cpp">
@@ -71,7 +71,7 @@
     <ClInclude Include="Convert.h">
       <Filter>Файлы заголовков\Headers Class</Filter>
     </ClInclude>
-    <ClInclude Include="Logging.h">
+    <ClInclude Include="Logger.h">
       <Filter>Файлы заголовков\Headers Class</Filter>
     </ClInclude>
   </ItemGroup>

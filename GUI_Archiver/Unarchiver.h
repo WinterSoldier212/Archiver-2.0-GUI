@@ -44,7 +44,7 @@ public:
 
 		string&& binaryFileText = Convert::stringToBinarySequence(fileText);
 
-		auto huffmanTree = HuffmanTree::convertStringToHuffmanTree(fileHuffmanTree);
+		auto huffmanTree = HuffmanTree::ConvertStringToHuffmanTree(fileHuffmanTree);
 		auto reverseHummanCode = HuffmanCode::getReverseHuffmanCode(huffmanTree);
 
 		if (fileIsExist(outputFileDirectory + "\\" + fileName)) {

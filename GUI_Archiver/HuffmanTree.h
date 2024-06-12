@@ -27,13 +27,13 @@ public:
 	HuffmanTree		operator()(HuffmanTree& huffmanTree) = delete;
 	HuffmanTree		operator=(HuffmanTree& huffmanTree) = delete;
 	
-	static Node*	getHuffmanTree				(vector<size_t> byteWeights);
-	static Node*	convertStringToHuffmanTree	(string str);
-	static string	convertHuffmanTreeToString	(Node* tree);
-	static void		deleteHuffmanTree			(Node* tree);
+	static Node*	GetHuffmanTree				(vector<size_t>& byteWeights);
+	static Node*	ConvertStringToHuffmanTree	(string str);
+	static string	ConvertHuffmanTreeToString	(Node* tree);
+	static void		DeleteHuffmanTree			(Node* tree);
 protected:
-	static void		fillTreeNodesWithSymbols	(string& str, vector<Node*>& nodes);
-	static void		translateHuffmanTreeIntoText(Node* root, string& huffmanTreeInText);
-	static Node*	getAndDeleteElement			(int& weight_, multimap<int, Node*>& tree);
-	static pair<int, Node*>	goTwoNodesIntoOne	(multimap<int, Node*>& tree);
+	static void		FillTreeNodesWithSymbols	(string& str, vector<Node*>& nodes);
+	static void		TranslateHuffmanTreeIntoText(Node* root, string& huffmanTreeInText);
+	static Node*	GetAndDeleteElement			(int& weight_, multimap<int, Node*>& tree);
+	static pair<int, Node*>	GoTwoNodesIntoOne	(multimap<int, Node*>& tree);
 };

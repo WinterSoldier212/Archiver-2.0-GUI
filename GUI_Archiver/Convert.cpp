@@ -1,17 +1,17 @@
 #include "Convert.h"
 
-char	Convert::binarySequenceToByte(const string& binarySequence)
+char	Convert::BinarySequenceToByte		(const string& binarySequence)
 {
 	bitset<8> byte(binarySequence);
 
 	return static_cast<char>(byte.to_ulong());
 }
-string	Convert::byteToBinarySequence(const char& byte)
+string	Convert::ByteToBinarySequence		(const char& byte)
 {
 	bitset<8> binarySequence(byte);
 	return binarySequence.to_string();
 }
-string	Convert::binarySequenceToSetBytes(const string& binaryFileText)
+string	Convert::BinarySequenceToSetBytes	(const string& binaryFileText)
 {
 	char zeroBitCounter = '0';
 	string byteInString = "",
@@ -38,7 +38,7 @@ string	Convert::binarySequenceToSetBytes(const string& binaryFileText)
 	}
 	return zeroBitCounter + binaryTextInByte;
 }
-string	Convert::stringToBinarySequence(const string& text)
+string	Convert::BtringToBinarySequence		(const string& text)
 {
 	string binarySequence = string();
 	for (char ch : text)

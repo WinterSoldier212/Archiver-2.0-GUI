@@ -1,14 +1,14 @@
 #include "HuffmanCode.h"
 
-map<unsigned char, string> HuffmanCode::getHuffmanCode(Node* root)
+map<unsigned char, string> HuffmanCode::GetHuffmanCode(Node* root)
 {
 	map<unsigned char, string> huffmanCode;
-	createHuffmanCode(root, "", huffmanCode);
+	CreateHuffmanCode(root, "", huffmanCode);
 	return huffmanCode;
 }
-map<string, unsigned char> HuffmanCode::getReverseHuffmanCode(Node* root)
+map<string, unsigned char> HuffmanCode::GetReverseHuffmanCode(Node* root)
 {
-	map<unsigned char, string>&& huffmanCode = getHuffmanCode(root);
+	map<unsigned char, string>&& huffmanCode = GetHuffmanCode(root);
 	map<string, unsigned char> reverseMap;
 
 	for (auto& i : huffmanCode)
@@ -18,7 +18,7 @@ map<string, unsigned char> HuffmanCode::getReverseHuffmanCode(Node* root)
 
 	return reverseMap;
 }
-void HuffmanCode::createHuffmanCode(Node* root, string str, map<unsigned char, string>& huffmanCode)
+void HuffmanCode::CreateHuffmanCode(Node* root, string str, map<unsigned char, string>& huffmanCode)
 {
 	if (root == nullptr) {
 		return;
@@ -27,6 +27,6 @@ void HuffmanCode::createHuffmanCode(Node* root, string str, map<unsigned char, s
 		huffmanCode[root->value] = str;
 	}
 
-	createHuffmanCode(root->left, str + "0", huffmanCode);
-	createHuffmanCode(root->right, str + "1", huffmanCode);
+	CreateHuffmanCode(root->left, str + "0", huffmanCode);
+	CreateHuffmanCode(root->right, str + "1", huffmanCode);
 }

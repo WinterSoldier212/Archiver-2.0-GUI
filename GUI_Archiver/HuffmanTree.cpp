@@ -1,6 +1,6 @@
 #include "HuffmanTree.h"
 
-Node* HuffmanTree::getHuffmanTree(vector<size_t> byteWeights)
+Node*	HuffmanTree::GetHuffmanTree (vector<size_t>& byteWeights)
 {
 	multimap<int, Node*> tree_;
 
@@ -22,29 +22,17 @@ Node* HuffmanTree::getHuffmanTree(vector<size_t> byteWeights)
 
 	while (tree_.size() > 1)
 	{
-		tree_.insert(goTwoNodesIntoOne(tree_));
+		tree_.insert(GoTwoNodesIntoOne(tree_));
 	}
 
 	return tree_.begin()->second;
 }
-void HuffmanTree::deleteHuffmanTree(Node* tree) 
-{
-	if (tree == nullptr) {
-		return;
-	}
-	if (!tree->left && !tree->right) {
-		deleteHuffmanTree(tree->left);
-	}
-	deleteHuffmanTree(tree->right);
-
-	delete tree;
-}
-Node* HuffmanTree::convertStringToHuffmanTree(string str)
+Node*	HuffmanTree::ConvertStringToHuffmanTree (string str)
 {
 	char zeroSymbol = str[0];
 	vector<Node*> nodes;
 
-	fillTreeNodesWithSymbols(str, nodes);
+	FillTreeNodesWithSymbols(str, nodes);
 
 	Node* cur = nodes[0];
 	auto it = nodes.begin(); it++;
@@ -90,13 +78,25 @@ Node* HuffmanTree::convertStringToHuffmanTree(string str)
 
 	return root;
 }
-string HuffmanTree::convertHuffmanTreeToString(Node* tree)
+string	HuffmanTree::ConvertHuffmanTreeToString	(Node* tree)
 {
 	string huffmanTreeInText = string(1, '\0');
-	translateHuffmanTreeIntoText(tree, huffmanTreeInText);
+	TranslateHuffmanTreeIntoText(tree, huffmanTreeInText);
 	return huffmanTreeInText;
 }
-void HuffmanTree::fillTreeNodesWithSymbols(std::string& str, std::vector<Node*>& nodes)
+void	HuffmanTree::DeleteHuffmanTree (Node* tree)
+{
+	if (tree == nullptr) {
+		return;
+	}
+	if (!tree->left && !tree->right) {
+		DeleteHuffmanTree(tree->left);
+	}
+	DeleteHuffmanTree(tree->right);
+
+	delete tree;
+}
+void	HuffmanTree::FillTreeNodesWithSymbols (string& str, vector<Node*>& nodes)
 {
 	Node* node;
 	for (size_t i = 0; i < str.size(); ++i)
@@ -116,28 +116,10 @@ void HuffmanTree::fillTreeNodesWithSymbols(std::string& str, std::vector<Node*>&
 		nodes.push_back(node);
 	}
 }
-pair<int, Node*> HuffmanTree::goTwoNodesIntoOne(multimap<int, Node*>& tree)
-{
-	int weight_ = 0;
-
-	Node* left = getAndDeleteElement(weight_, tree);
-	Node* right = getAndDeleteElement(weight_, tree);
-	Node* node_ = new Node(left, right);
-
-	return make_pair(weight_, node_);
-}
-Node* HuffmanTree::getAndDeleteElement(int& weight_, multimap<int, Node*>& tree)
-{
-	weight_ += tree.begin()->first;
-	Node* element = tree.begin()->second;
-	tree.erase(tree.begin());
-
-	return element;
-}
-void HuffmanTree::translateHuffmanTreeIntoText(Node* root, string& huffmanTreeInText)
+void	HuffmanTree::TranslateHuffmanTreeIntoText (Node* root, string& huffmanTreeInText)
 {
 	if (root == nullptr)
-			return;
+		return;
 
 	if (root->isNode)
 	{
@@ -152,7 +134,25 @@ void HuffmanTree::translateHuffmanTreeIntoText(Node* root, string& huffmanTreeIn
 			huffmanTreeInText += '\\';
 		huffmanTreeInText += right->value;
 
-		translateHuffmanTreeIntoText(left, huffmanTreeInText);
-		translateHuffmanTreeIntoText(right, huffmanTreeInText);
+		TranslateHuffmanTreeIntoText(left, huffmanTreeInText);
+		TranslateHuffmanTreeIntoText(right, huffmanTreeInText);
 	}
+}
+Node*	HuffmanTree::GetAndDeleteElement (int& weight_, multimap<int, Node*>& tree)
+{
+	weight_ += tree.begin()->first;
+	Node* element = tree.begin()->second;
+	tree.erase(tree.begin());
+
+	return element;
+}
+pair<int, Node*> HuffmanTree::GoTwoNodesIntoOne (multimap<int, Node*>& tree)
+{
+	int weight_ = 0;
+
+	Node* left = GetAndDeleteElement(weight_, tree);
+	Node* right = GetAndDeleteElement(weight_, tree);
+	Node* node_ = new Node(left, right);
+
+	return make_pair(weight_, node_);
 }

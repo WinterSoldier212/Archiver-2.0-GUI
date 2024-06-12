@@ -3,15 +3,18 @@
 
 using namespace std;
 
-class Logging
+class Logger
 {
 	ofstream* logFile;
 public:
-	Logging	(string& pathForLogFile);
-	virtual ~Logging();
+	Logger() = delete;
+	Logger(string& pathForLogFile);
+	virtual ~Logger();
 
 	virtual void Success(string& succsesMessage);
 	virtual void Warning(string& warningMessage);
 	virtual void Error	(string& errorMessage);
 	virtual void Fatal	(string& fatalMessage);
-} LogFile;
+
+	Logger& operator<<(string nothingText);
+};
