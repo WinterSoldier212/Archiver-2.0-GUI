@@ -22,7 +22,7 @@ string	Convert::BinarySequenceToSetBytes	(const string& binaryFileText)
 		byteInString += i;
 		if (byteInString.size() == 8)
 		{
-			binaryTextInByte += binarySequenceToByte(byteInString);
+			binaryTextInByte += BinarySequenceToByte(byteInString);
 			byteInString = "";
 		}
 	}
@@ -34,16 +34,16 @@ string	Convert::BinarySequenceToSetBytes	(const string& binaryFileText)
 	}
 	if (!byteInString.empty())
 	{
-		binaryTextInByte += binarySequenceToByte(byteInString);
+		binaryTextInByte += BinarySequenceToByte(byteInString);
 	}
 	return zeroBitCounter + binaryTextInByte;
 }
 string	Convert::BtringToBinarySequence		(const string& text)
 {
 	string binarySequence = string();
-	for (char ch : text)
+	for (const char& ch : text)
 	{
-		binarySequence += byteToBinarySequence(ch);
+		binarySequence += ByteToBinarySequence(ch);
 	}
 	return binarySequence;
 }

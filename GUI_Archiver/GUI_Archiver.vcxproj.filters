@@ -28,9 +28,18 @@
     <Filter Include="Файлы заголовков\Headers Class\Headers Huffman classes">
       <UniqueIdentifier>{44696762-ace5-437a-8199-decf251a5087}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Headers Class\Headers SMFL classes">
+      <UniqueIdentifier>{3df7c30f-342d-4c41-8f87-4cc64f87c578}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Software Screens">
+      <UniqueIdentifier>{f6041f0e-e676-4bc2-ab47-af8445c54d81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Headers Class\Archiver classes">
+      <UniqueIdentifier>{7363d392-ac2c-4eac-bd74-8dc45faf10c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="HuffmanCode.cpp">
@@ -47,16 +56,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ArchiveHeaders.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Archiver.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="ProgramOptions.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Unarchiver.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="FileFunctions.h">
@@ -73,6 +73,33 @@
     </ClInclude>
     <ClInclude Include="Logger.h">
       <Filter>Файлы заголовков\Headers Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Файлы заголовков\Headers Class\Headers SMFL classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Textbox.h">
+      <Filter>Файлы заголовков\Headers Class\Headers SMFL classes</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingScreen.h">
+      <Filter>Файлы заголовков\Software Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Archiver Screen.h">
+      <Filter>Файлы заголовков\Software Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Unarchiver Screen.h">
+      <Filter>Файлы заголовков\Software Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu Screen.h">
+      <Filter>Файлы заголовков\Software Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Unarchiver.h">
+      <Filter>Файлы заголовков\Headers Class\Archiver classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Archiver.h">
+      <Filter>Файлы заголовков\Headers Class\Archiver classes</Filter>
+    </ClInclude>
+    <ClInclude Include="ArchiveHeaders.h">
+      <Filter>Файлы заголовков\Headers Class\Archiver classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
