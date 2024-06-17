@@ -1,49 +1,18 @@
 #pragma once
 
-#include <iostream>
 #include <vector>
-#include <boost/program_options.hpp>
 #include "Archiver.h"
 #include "Unarchiver.h"
 
-namespace po = boost::program_options;
+using namespace std;
 
-void zip(const po::variables_map& vm)
-{
-    vector<string> files;
-    string outputFileDirectory;
-    string outputFileName;
-   
-    {
-        if (vm.count("file"))
-        {
-            files = vm["file"].as<vector <string> >();
-        }
-        else
-        {
-            throw exception("You must specify at least one file to be archived!");
-        }
-    }
-    {
-        if (vm.count("output"))
-        {
-            outputFileName = vm["output"].as<string>();
-        }
-        else
-        {
-            outputFileName = getFileNameFromPath(files.at(0));
-        }
-    }
-    {
-        if (vm.count("dir"))
-        {
-            outputFileDirectory = vm["dir"].as<string>();
-        }
-        else
-        {
-            outputFileDirectory = getCurrentDirectory();
-        }
-    }
+void zip(
+    vector<string>& files,
+    string& outputFileDirectory,
+    string& outputFileName
+) {
+    if (outputFileDirectory.empty())
+        outputFileDirectory = getCurrentDirectory();
 
     string pathForNewArchive = outputFileDirectory + "\\" + outputFileName;
 
@@ -55,31 +24,14 @@ void zip(const po::variables_map& vm)
     }
 }
 
-void unzip(const po::variables_map& vm)
-{
-    vector<string> archives;
-    string outputFileDirectory;
+void unzip(
+    vector<string>& archives,
+    string& outputFileDirectory
+) {
+    if (outputFileDirectory.empty())
+        outputFileDirectory = getCurrentDirectory();
 
-    {
-        if (vm.count("archive"))
-        {
-            archives = vm["archive"].as<std::vector<string> >();
-        }
-        else
-        {
-            throw exception("You must specify the archive that needs to be unpacked!");
-        }
-    }
-    {
-        if (vm.count("dir"))
-        {
-            outputFileDirectory = vm["dir"].as<string>();
-        }
-        else
-        {
-            outputFileDirectory = getCurrentDirectory();
-        }
-    }
+    filesystem::create_directories(outputFileDirectory);
 
     for (auto archive : archives)
     {
@@ -88,9 +40,4 @@ void unzip(const po::variables_map& vm)
 
         ExtractAllFilesFromArchive(unarchiver, outputFileDirectory);
     }
-}
-
-void showHelpOptions(const po::options_description& desc)
-{
-    cout << desc;
 }

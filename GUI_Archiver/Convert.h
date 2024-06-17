@@ -12,5 +12,5 @@ public:
 	static char		BinarySequenceToByte	(const string& binarySequence);
 	static string	ByteToBinarySequence	(const char& byte);
 	static string	BinarySequenceToSetBytes(const string& binaryFileText);
-	static string	BtringToBinarySequence	(const string& text);
-} Convert;
+	static string	StringToBinarySequence	(const string& text);
+};

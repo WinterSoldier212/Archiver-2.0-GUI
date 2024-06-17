@@ -38,7 +38,7 @@ string	Convert::BinarySequenceToSetBytes	(const string& binaryFileText)
 	}
 	return zeroBitCounter + binaryTextInByte;
 }
-string	Convert::BtringToBinarySequence		(const string& text)
+string	Convert::StringToBinarySequence		(const string& text)
 {
 	string binarySequence = string();
 	for (const char& ch : text)

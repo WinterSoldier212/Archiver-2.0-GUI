@@ -168,7 +168,9 @@
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Menu Screen.h" />
     <ClInclude Include="ProgramOptions.h" />
-    <ClInclude Include="Textbox.h" />
+    <ClInclude Include="sfmlHeaders.h" />
+    <ClInclude Include="TextBox.h" />
+    <ClInclude Include="TextField.h" />
     <ClInclude Include="Unarchiver Screen.h" />
     <ClInclude Include="Unarchiver.h" />
   </ItemGroup>

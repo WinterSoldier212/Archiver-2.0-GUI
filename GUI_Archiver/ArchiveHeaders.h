@@ -8,6 +8,9 @@
 #include "HuffmanCode.h"
 #include "FileFunctions.h"
 #include "Convert.h"
+#include "Logger.h"
+
+Logger logFile("logFile.txt");
 
 class ExceptionFileNotExist : public exception
 {

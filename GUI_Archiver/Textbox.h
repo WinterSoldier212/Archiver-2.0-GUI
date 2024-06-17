@@ -1,9 +1,7 @@
 #pragma once
-#pragma warning(disable : 4996)
-#include <SFML/Graphics.hpp>
-#include <stack>
 
-using namespace std;
+#include "sfmlHeaders.h"
+#include <stack>
 
 class TextBox
 {
@@ -11,36 +9,62 @@ class TextBox
     sf::RectangleShape box;
     sf::Clock clock;
 
-    std::stack<char> inputText;
-    string visibleText;
+    std::stack<unsigned char> inputText;
+    std::string visibleText;
     int characterLimit{ 255 };
-    int visibleCharacterLimit{ 0 };
+    int visibleCharacterLimit{ 10 };
     bool isFocused = false;
 public:
     TextBox() = default;
+
     TextBox(TextBox& textBox) = default;
 
+    TextBox(sf::Font& font, int size, int visibleCharacterLimit, int characterLimit, sf::Vector2f position)
+    {
+        SetFontText(font);
+
+        SetCharacterSizeText(size);
+
+        SetVisibleCharacterLimit(visibleCharacterLimit);
+        SetCharacterLimit(characterLimit);
+
+        SetColorsForBackground(sf::Color::White, sf::Color::Black);
+        SetColorText(sf::Color::Black);
+
+        SetOutlineThickness(2);
+        SetPosition(position);
+    }
+
     void SetFontText(sf::Font& font_) { text.setFont(font_); }
+
     void SetCharacterSizeText(int size_)
     {
         text.setCharacterSize(size_);
         ReSizeBox();
     }
+
     void SetVisibleCharacterLimit(int visibleLimit_)
     {
         visibleCharacterLimit = visibleLimit_;
         ReSizeBox();
     }
-    void SetColorText(sf::Color& color_) { text.setColor(color_); }
+
+    void SetColorText(sf::Color color_) { text.setColor(color_); }
+
     void SetOutlineThickness(int outlineThickness_) { box.setOutlineThickness(outlineThickness_); }
-    void SetColorForOutline(sf::Color& outlineColor) { box.setOutlineColor(outlineColor); }
-    void SetColorForFill(sf::Color& fillColor) { box.setFillColor(fillColor); }
-    void SetColorsForBackground(sf::Color& fillColor, sf::Color& outlineColor)
+
+    void SetColorForOutline(sf::Color outlineColor) { box.setOutlineColor(outlineColor); }
+
+    void SetColorForFill(sf::Color fillColor) { box.setFillColor(fillColor); }
+
+    void SetColorsForBackground(sf::Color fillColor, sf::Color outlineColor)
     {
         box.setFillColor(fillColor);
         box.setOutlineColor(outlineColor);
     }
+
     void SetCharacterLimit(int limit_) { characterLimit = limit_; }
+
     void SetPosition(sf::Vector2f position_)
     {
         text.setPosition(position_);
@@ -58,14 +82,22 @@ public:
             }
             else if (event.type == sf::Event::KeyPressed)
             {
-                if (event.key.code == sf::Keyboard::BackSpace && !inputText.empty())
+                if (!inputText.empty() &&
+                    sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace) &&
+                    (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) ||
+                        sf::Keyboard::isKeyPressed(sf::Keyboard::RControl)))
+                {
+                    while (!inputText.empty() && inputText.top() != ';')
+                        inputText.pop();
+                }
+                else if (event.key.code == sf::Keyboard::BackSpace && !inputText.empty())
                 {
                     inputText.pop();
                 }
             }
 
-            stack<char> copyInputText = inputText;
-            stack<char> reverseInputText;
+            std::stack<unsigned char> copyInputText = inputText;
+            std::stack<unsigned char> reverseInputText;
             for (size_t i = 0; i < visibleCharacterLimit && !copyInputText.empty(); ++i)
             {
                 reverseInputText.push(copyInputText.top());
@@ -94,6 +126,7 @@ public:
             }
         }
     }
+
     void Tick()
     {
         static sf::Time text_effect_time;
@@ -104,14 +137,21 @@ public:
             text.setString(visibleText);
             return;
         }
-        
+
         text_effect_time += clock.restart();
         if (text_effect_time >= sf::seconds(0.5f))
         {
             show_cursor = !show_cursor;
             text_effect_time = sf::Time::Zero;
         }
-        text.setString(visibleText + (show_cursor ? '_' : ' '));
+        if (show_cursor)
+        {
+            text.setString(visibleText + '_');
+        }
+        else
+        {
+            text.setString(visibleText);
+        }
     }
 
     void DrawTo(sf::RenderWindow& window)
@@ -120,37 +160,14 @@ public:
         window.draw(text);
     }
 
+    std::string GetText() { return text.getString(); }
+
 private:
     void ReSizeBox()
     {
         int text_lenght = visibleCharacterLimit;
         int text_size = text.getCharacterSize();
 
-        box.setSize(sf::Vector2f(text_size * ((text_lenght) / 2 + 1), text_size + (text_size * 0.3)));
-        // text_size + (text_size * 0.3) = y
-        // text_size * (text_lenght + 1) / 2 = x
+        box.setSize(sf::Vector2f(text_size * ((text_lenght) / 1.6), text_size + (text_size * 0.3)));
     }
 };
-/*
-    sf::Color white = sf::Color::White;
-    sf::Color black = sf::Color::Black;
-
-    Textbox textbox;
-    textbox.SetCharacterLimit(30);
-    textbox.SetCharacterSizeText(25);
-    textbox.SetColorForFill(white);
-    textbox.SetColorForOutline(black);
-    textbox.SetColorsForBackground(white, black);
-    textbox.SetColorText(black);
-    textbox.SetFontText(font);
-    textbox.SetOutlineThickness(2);
-    textbox.SetPosition(sf::Vector2f(150, 100));
-    textbox.SetVisibleCharacterLimit(30);
-
-    while:
-        while event:
-            textbox.Update(window, Event);
-        
-        textbox.Tick();
-        textbox.DrawTo(window);
-*/

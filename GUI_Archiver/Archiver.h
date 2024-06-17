@@ -21,8 +21,12 @@ public:
 
 		archiveName = getFreeFileNameInDirectory(pathForNewArhcive, ".alzip");
 		archive.open(archiveName, ios::out | ios::binary);
-		archive << "As the author of this application, which was made as part of the course work, I want to sincerely thank my loved ones and especially Danil! He is a very courageous man who had the strength to tolerate me and listen to my crazy ideas and requests throughout this whole job and my whole life in general! If you hadn't been there, brother, I wouldn't have achieved all this!!! The first line in each of the archives will be dedicated to you, Brother!\n";
-		archive << "I also want to express my gratitude to Ksenia Mikhailovna Spiridonova, a wonderful mathematics teacher who became the head of my course work and gave me the opportunity to freely choose a topic! Thanks! Thanks to everyone who was there for me and supported me!!!";
+
+		if (!archive.is_open())
+			throw exception("Archive not created!");
+
+		//archive << "As the author of this application, which was made as part of the course work, I want to sincerely thank my loved ones and especially Danil! He is a very courageous man who had the strength to tolerate me and listen to my crazy ideas and requests throughout this whole job and my whole life in general! If you hadn't been there, brother, I wouldn't have achieved all this!!! The first line in each of the archives will be dedicated to you, Brother!\n";
+		//archive << "I also want to express my gratitude to Ksenia Mikhailovna Spiridonova, a wonderful mathematics teacher who became the head of my course work and gave me the opportunity to freely choose a topic! Thanks! Thanks to everyone who was there for me and supported me!!!";
 	}
 
 	virtual void Open(string pathForArhcive) override
@@ -51,12 +55,12 @@ public:
 		vector<size_t>&& byteFrequency = getByteFrequencyFromFile(pathForFile);
 
 		auto&& huffmanTree = HuffmanTree::GetHuffmanTree(byteFrequency);
-		auto&& huffmanCode = HuffmanCode::getHuffmanCode(huffmanTree);
+		auto&& huffmanCode = HuffmanCode::GetHuffmanCode(huffmanTree);
 
 		string&& fileName = getFullFileNameFromPath(pathForFile);
 		string&& huffmanTreeInText = HuffmanTree::ConvertHuffmanTreeToString(huffmanTree);
 		string&& binaryText = getBinaryTextFromFileWithHuffmanCode(huffmanCode, pathForFile);
-		string&& textFromFileModifiedWithHuffmanCode = Convert::binarySequenceToSetBytes(binaryText);
+		string&& textFromFileModifiedWithHuffmanCode = Convert::BinarySequenceToSetBytes(binaryText);
 
 		HuffmanTree::DeleteHuffmanTree(huffmanTree);
 
@@ -110,17 +114,17 @@ void AddFileInArchive(Archiver& archive, const string& pathForFile)
 {
 	try
 	{
-		logFile << __TIME__  << " Trying to write a file - " << pathForFile << " in Archive - " << archive.GetName() << endl;
+		logFile << __TIME__ << " Trying to write a file - " << pathForFile << " in Archive - " << archive.GetName() << "\n";
 		archive.AddFile(pathForFile);
-		logFile << __TIME__  << " The file has been successfully archived!" << endl;
+		logFile << __TIME__  << " The file has been successfully archived!" << "\n";
 	}
 	catch (ExceptionArchiveNotOpen& ex)
 	{
-		logFile << "Error! " << __TIME__ << endl << ex.what() << ex.GetArchiveName() << endl;
+		logFile << "Error! " << __TIME__ << "\n" << ex.what() << ex.GetArchiveName() << "\n";
 	}
 	catch (ExceptionFileNotExist& ex)
 	{
-		logFile << "Error! " << __TIME__ << endl << ex.what() << ex.GetFileName() << endl;
+		logFile << "Error! " << __TIME__ << "\n" << ex.what() << ex.GetFileName() << "\n";
 	}
 }
 

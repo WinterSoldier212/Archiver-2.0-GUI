@@ -1,70 +1,82 @@
 #pragma once
-#pragma warning(disable : 4996)
-#include <iostream>
-#include <SFML/Graphics.hpp>
+#include "sfmlHeaders.h"
 
-class Button {
+class Button
+{
+    sf::RectangleShape button;
+    sf::Text text;
+
+    int btnWidth;
+    int btnHeight;
 public:
-	Button(std::string btnText, sf::Vector2f buttonSize, int charSize, sf::Color bgColor, sf::Color textColor) {
-		button.setSize(buttonSize);
-		button.setFillColor(bgColor);
+    Button(std::string btnText, sf::Vector2f buttonSize, int charSize, sf::Color bgColor, sf::Color textColor)
+    {
+        button.setSize(buttonSize);
+        button.setFillColor(bgColor);
 
-		// Get these for later use:
-		btnWidth = buttonSize.x;
-		btnHeight = buttonSize.y;
+        btnWidth = buttonSize.x;
+        btnHeight = buttonSize.y;
 
-		text.setString(btnText);
-		text.setCharacterSize(charSize);
-		text.setColor(textColor);
-	}
+        text.setString(btnText);
+        text.setCharacterSize(charSize);
+        text.setColor(textColor);
+    }
 
-	// Pass font by reference:
-	void setFont(sf::Font& fonts) {
-		text.setFont(fonts);
-	}
+    void setFont(sf::Font& fonts) { text.setFont(fonts); }
 
-	void setBackColor(sf::Color color) {
-		button.setFillColor(color);
-	}
+    void setBackColor(sf::Color color) { button.setFillColor(color); }
 
-	void setTextColor(sf::Color color) {
-		text.setColor(color);
-	}
+    void setTextColor(sf::Color color) { text.setColor(color); }
 
-	void setPosition(sf::Vector2f point) {
-		button.setPosition(point);
+    void setPosition(sf::Vector2f point)
+    {
+        button.setPosition(point);
 
-		// Center text on button:
-		float xPos = (point.x + btnWidth / 2) - (text.getLocalBounds().width / 2);
-		float yPos = (point.y + btnHeight / 2.2) - (text.getLocalBounds().height / 2);
-		text.setPosition(xPos, yPos);
-	}
+        float xPos = ((point.x + btnWidth / 2) - ((text.getString().getSize() * text.getCharacterSize() / 3.25)));
+        float yPos = ((point.y + btnHeight / 2) - (text.getCharacterSize() * 1.3 / 2));
+        text.setPosition(xPos, yPos);
+    }
 
-	void drawTo(sf::RenderWindow& window) {
-		window.draw(button);
-		window.draw(text);
-	}
+    void drawTo(sf::RenderWindow& window)
+    {
+        window.draw(button);
+        window.draw(text);
+    }
 
-	// Check if the mouse is within the bounds of the button:
-	bool isMouseOver(sf::RenderWindow& window) {
-		int mouseX = sf::Mouse::getPosition(window).x;
-		int mouseY = sf::Mouse::getPosition(window).y;
+    void Update(sf::RenderWindow& window, sf::Event& event)
+    {
+        static sf::Color btnColor = button.getFillColor();
+        sf::Color delColor(15, 15, 15);
+        if (isMouseOver(window))
+        {
+            button.setFillColor(btnColor + delColor);
+        }
+        else
+        {
+            button.setFillColor(btnColor);
+        }
+    }
 
-		int btnPosX = button.getPosition().x;
-		int btnPosY = button.getPosition().y;
+    bool Click(sf::RenderWindow& window, sf::Event& event)
+    {
+        return (isMouseOver(window) && event.type == sf::Event::MouseButtonPressed);
+    }
 
-		int btnxPosWidth = button.getPosition().x + btnWidth;
-		int btnyPosHeight = button.getPosition().y + btnHeight;
+    bool isMouseOver(sf::RenderWindow& window)
+    {
+        int mouseX = sf::Mouse::getPosition(window).x;
+        int mouseY = sf::Mouse::getPosition(window).y;
 
-		if (mouseX < btnxPosWidth && mouseX > btnPosX && mouseY < btnyPosHeight && mouseY > btnPosY) {
-			return true;
-		}
-		return false;
-	}
-private:
-	sf::RectangleShape button;
-	sf::Text text;
+        int btnPosX = button.getPosition().x;
+        int btnPosY = button.getPosition().y;
 
-	int btnWidth;
-	int btnHeight;
+        int btnxPosWidth = button.getPosition().x + btnWidth;
+        int btnyPosHeight = button.getPosition().y + btnHeight;
+
+        if (mouseX < btnxPosWidth && mouseX > btnPosX && mouseY < btnyPosHeight && mouseY > btnPosY)
+        {
+            return true;
+        }
+        return false;
+    }
 };

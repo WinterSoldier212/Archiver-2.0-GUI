@@ -1,14 +1,12 @@
 #pragma warning(disable : 4996)
 
-#include <SFML/Graphics.hpp>
 #include "LoadingScreen.h"
-
-using namespace std;
+#include "Menu Screen.h"
 
 int main()
 {
     sf::RenderWindow window;
     LoadingScreen(window);
-
+    MenuScreen(window);
     return 0;
 }

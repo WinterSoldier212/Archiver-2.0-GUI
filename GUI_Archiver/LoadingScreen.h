@@ -1,5 +1,5 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+#include "sfmlHeaders.h"
 
 #define WINDOW_LOADING_SCREEN_LIFETIME 3.0f
 

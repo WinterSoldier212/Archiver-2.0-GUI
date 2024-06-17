@@ -42,10 +42,10 @@ public:
 		string&& fileHuffmanTree = getTextInTagFromFile(archive, Tag::HuffmanTree);
 		string&& fileText = getTextInTagFromFile(archive, Tag::Text);
 
-		string&& binaryFileText = Convert::stringToBinarySequence(fileText);
+		string&& binaryFileText = Convert::StringToBinarySequence(fileText);
 
 		auto huffmanTree = HuffmanTree::ConvertStringToHuffmanTree(fileHuffmanTree);
-		auto reverseHummanCode = HuffmanCode::getReverseHuffmanCode(huffmanTree);
+		auto reverseHummanCode = HuffmanCode::GetReverseHuffmanCode(huffmanTree);
 
 		if (fileIsExist(outputFileDirectory + "\\" + fileName)) {
 			string clearFileName = getFileNameFromPath(fileName);
@@ -115,19 +115,19 @@ bool ExtractFileFromArchive(Unarchiver& unarchiver, const string& outputFileDire
 {
 	try
 	{
-		logFile << __TIME__ << " Trying to extract file from Archive - " << unarchiver.GetName() << endl;
+		logFile << __TIME__ << " Trying to extract file from Archive - " << unarchiver.GetName() << "\n";
 		unarchiver.ExtractFile(outputFileDirectory);
-		logFile << __TIME__ << " The file has been successfully extracted!" << endl;
+		logFile << __TIME__ << " The file has been successfully extracted!" << "\n";
 		return true;
 	}
 	catch (ExceptionArchiveNotOpen& ex)
 	{
-		logFile << " Error Open! " << __TIME__ << endl << ex.what() << ex.GetArchiveName() << endl;
+		logFile << " Error Open! " << __TIME__ << "\n" << ex.what() << ex.GetArchiveName() << "\n";
 		return false;
 	}
 	catch (ExceptionArchiveEof& ex)
 	{
-		logFile << "Archive EOF!" << __TIME__ << endl << ex.what() << ex.GetArchiveName() << endl;
+		logFile << "Archive EOF!" << __TIME__ << "\n" << ex.what() << ex.GetArchiveName() << "\n";
 		return false;
 	}
 	catch (exception& ex)
